@@ -1,3 +1,6 @@
+#Лабораторна робота 3
+#ФБ-24 Савісько Богдан
+
 from spyre import server
 import urllib.request
 import datetime
