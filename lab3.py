@@ -86,6 +86,7 @@ def process_csv_files():
     df = df[df['year'] != '</pre></tt>']
     df = df.loc[(df['ID']!=12) &(df['ID']!=20)]
     df['year'] = df['year'].astype(int)
+    df = df.astype({'week': int} ) 
 
     df["ID"] = df["ID"].replace(mapping)
 
@@ -185,7 +186,6 @@ class SimpleApp(server.App):
     def getData(self,params):
         df = process_csv_files()
         parameter = params.get('parameter')  
-        print(parameter)
         region_id = params.get('region')  
         years = params.get('years').split('-')
         weeks = params.get('weeks').split('-') 
@@ -212,7 +212,7 @@ class SimpleApp(server.App):
         ax.set_xlabel('Weeks')
         ax.set_ylabel(parameter)
         ax.set_title('Data for Parameter {} over Weeks'.format(parameter))
-        ax.legend()
+        ax.legend(loc='upper right',  fontsize="8")
         ax.grid(True)
         
         return fig  
